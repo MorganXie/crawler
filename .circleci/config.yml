@@ -4,16 +4,12 @@ jobs:
     docker:
       - image: circleci/openjdk:8u212-jdk-stretch
     steps:
-      - run: echo "====================构建开始=============================="
       - checkout
       - restore_cache:
           key: hcsp-{{ checksum "pom.xml" }}
       - run:
-          name: Verify whitelist
-          command: ./.circleci/verifyWhitelist.sh
-      - run:
           name: Run Maven verify
-          command: mvn clean verify -PmavenCentral
+          command: mvn clean test
       - save_cache: # saves the project dependencies
           paths:
             - ~/.m2
