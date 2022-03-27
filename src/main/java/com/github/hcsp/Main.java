@@ -28,7 +28,7 @@ public class Main {
             }
             if (isInterestingLink(link)) {
                 Document doc = httpGetAndParseHtml(link);
-                doc.select("a").stream().map(eachTag->eachTag.attr("href")).forEach(linkPool::add);
+                doc.select("a").stream().map(eachTag -> eachTag.attr("href")).forEach(linkPool::add);
                 storeIntoDatabaseIfItIsNewsPage(doc);
                 processedLinks.add(link);
             }
